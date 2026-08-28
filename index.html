@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sameh Store | روابط التواصل</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* التنسيقات العامة */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* خط عربي أنيق */
+        }
+
+        body {
+            /* خلفية متدرجة عصرية */
+            background: linear-gradient(135deg, #0f172a, #1e293b);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        /* حاوية الصفحة الرئيسية */
+        .container {
+            /* تأثير البطاقة الزجاجية */
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 40px 25px;
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+        }
+
+        /* تنسيق اللوجو */
+        .profile-img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid #e11d48; /* لون أحمر من اللوجو للحدود */
+            margin-bottom: 15px;
+        }
+
+        /* تنسيق اسم المتجر */
+        h1 {
+            color: #fff;
+            font-size: 1.6rem;
+            margin-bottom: 5px;
+        }
+
+        /* تنسيق الوصف */
+        p {
+            color: #94a3b8;
+            font-size: 0.9rem;
+            margin-bottom: 30px;
+        }
+
+        /* حاوية الأزرار */
+        .links-container {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        /* تنسيق الزر العام */
+        .link-btn {
+            display: flex;
+            align-items: center;
+            justify-content: space-between; /* الأيقونة على اليسار والنص على اليمين */
+            padding: 16px 20px;
+            background: rgba(255, 255, 255, 0.08);
+            color: #fff;
+            text-decoration: none;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.3s ease;
+        }
+
+        /* تأثير عند تمرير الماوس */
+        .link-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(225, 29, 72, 0.3); /* ظل بلون أحمر خفيف */
+        }
+
+        /* تنسيق الأيقونة داخل الزر */
+        .link-btn i {
+            font-size: 1.4rem;
+        }
+
+        /* ألوان مخصصة لكل زر */
+        .facebook-btn:hover { background-color: #1877f2; } /* لون فيسبوك */
+        .tiktok-btn:hover { background-color: #000000; } /* لون تيك توك */
+        .maps-btn:hover { background-color: #ea4335; } /* لون جوجل مابس */
+        .phone-btn:hover { background-color: #38bdf8; } /* لون الهاتف */
+        .whatsapp-btn:hover { background-color: #25d366; } /* لون واتساب */
+
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <img src="logo.png" alt="Sameh Store Logo" class="profile-img">
+        
+        <h1>Sameh Store</h1>
+        <p>phone repair & accessories</p>
+
+        <div class="links-container">
+            <a href="https://www.facebook.com/share/1Je7fBPV23/" target="_blank" class="link-btn facebook-btn">
+                فيسبوك <i class="fab fa-facebook"></i>
+            </a>
+
+            <a href="https://www.tiktok.com/@sameh_store87?_r=1&_t=ZS-99E68e6NwhR" target="_blank" class="link-btn tiktok-btn">
+                تيك توك <i class="fab fa-tiktok"></i>
+            </a>
+
+            <a href="https://maps.app.goo.gl/xUicmwJJADEfgXDe9?g_st=aw" target="_blank" class="link-btn maps-btn">
+                موقعنا على الخريطة <i class="fas fa-map-marker-alt"></i>
+            </a>
+
+            <a href="tel:+201121618190" class="link-btn phone-btn">
+                اتصل بنا <i class="fas fa-phone"></i>
+            </a>
+
+            <a href="https://wa.me/201095913922" target="_blank" class="link-btn whatsapp-btn">
+                واتساب <i class="fab fa-whatsapp"></i>
+            </a>
+        </div>
+    </div>
+
+</body>
+</html>
