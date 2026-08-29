@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sameh Store | روابط التواصل</title>
+    <title>Sameh Store | روابط التواصل والدفع</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         /* التنسيقات العامة */
@@ -11,12 +11,12 @@
             box-sizing: border-box;
             margin: 0;
             padding: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* خط عربي أنيق */
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
 
         body {
-            /* خلفية متدرجة عصرية */
-            background: linear-gradient(135deg, #0f172a, #1e293b);
+            /* خلفية فاتحة وعصرية بتدرج هادئ */
+            background: linear-gradient(135deg, #f1f5f9, #e2e8f0);
             min-height: 100vh;
             display: flex;
             justify-content: center;
@@ -24,18 +24,17 @@
             padding: 20px;
         }
 
-        /* حاوية الصفحة الرئيسية */
+        /* حاوية الصفحة الرئيسية (بطاقة بيضاء فاتحة) */
         .container {
-            /* تأثير البطاقة الزجاجية */
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: #ffffff;
             border-radius: 20px;
             padding: 40px 25px;
             width: 100%;
             max-width: 400px;
             text-align: center;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+            border: 1px solid #e2e8f0;
+            position: relative;
         }
 
         /* تنسيق اللوجو */
@@ -44,20 +43,20 @@
             height: 100px;
             border-radius: 50%;
             object-fit: cover;
-            border: 3px solid #e11d48; /* لون أحمر من اللوجو للحدود */
+            border: 3px solid #e11d48;
             margin-bottom: 15px;
         }
 
         /* تنسيق اسم المتجر */
         h1 {
-            color: #fff;
+            color: #1e293b;
             font-size: 1.6rem;
             margin-bottom: 5px;
         }
 
         /* تنسيق الوصف */
         p {
-            color: #94a3b8;
+            color: #64748b;
             font-size: 0.9rem;
             margin-bottom: 30px;
         }
@@ -73,22 +72,23 @@
         .link-btn {
             display: flex;
             align-items: center;
-            justify-content: space-between; /* الأيقونة على اليسار والنص على اليمين */
+            justify-content: space-between;
             padding: 16px 20px;
-            background: rgba(255, 255, 255, 0.08);
-            color: #fff;
+            color: #ffffff;
             text-decoration: none;
             border-radius: 12px;
             font-size: 1.1rem;
             font-weight: 600;
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            transition: all 0.3s ease;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+            cursor: pointer;
+            border: none;
+            width: 100%;
         }
 
-        /* تأثير عند تمرير الماوس */
-        .link-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(225, 29, 72, 0.3); /* ظل بلون أحمر خفيف */
+        /* تأثير لمسة الإصبع للأجهزة الذكية */
+        .link-btn:active {
+            transform: scale(0.98);
         }
 
         /* تنسيق الأيقونة داخل الزر */
@@ -96,19 +96,45 @@
             font-size: 1.4rem;
         }
 
-        /* ألوان مخصصة لكل زر */
-        .facebook-btn:hover { background-color: #1877f2; } /* لون فيسبوك */
-        .tiktok-btn:hover { background-color: #000000; } /* لون تيك توك */
-        .maps-btn:hover { background-color: #ea4335; } /* لون جوجل مابس */
-        .phone-btn:hover { background-color: #38bdf8; } /* لون الهاتف */
-        .whatsapp-btn:hover { background-color: #25d366; } /* لون واتساب */
+        /* الألوان الظاهرة دائماً لكل زر */
+        .facebook-btn { background-color: #1877f2; }
+        .tiktok-btn { background-color: #000000; }
+        .maps-btn { background-color: #ea4335; }
+        .phone-btn { background-color: #0284c7; }
+        .whatsapp-btn { background-color: #25d366; }
+        .vodafone-btn { background-color: #e60000; }
+        .instapay-btn { background-color: #5b2c6f; }
+
+        /* رسالة التنبيه عند النسخ */
+        .toast {
+            visibility: hidden;
+            min-width: 200px;
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            border-radius: 8px;
+            padding: 12px;
+            position: fixed;
+            z-index: 1000;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 0.95rem;
+            opacity: 0;
+            transition: opacity 0.3s, visibility 0.3s;
+        }
+
+        .toast.show {
+            visibility: visible;
+            opacity: 1;
+        }
 
     </style>
 </head>
 <body>
 
     <div class="container">
-        <img src="logo.png" alt="Sameh Store Logo" class="profile-img">
+        <img src="your-logo-url-here" alt="Sameh Store Logo" class="profile-img">
         
         <h1>Sameh Store</h1>
         <p>phone repair & accessories</p>
@@ -133,8 +159,39 @@
             <a href="https://wa.me/201095913922" target="_blank" class="link-btn whatsapp-btn">
                 واتساب <i class="fab fa-whatsapp"></i>
             </a>
+
+            <!-- زر فودافون كاش مع خاصية النسخ -->
+            <button onclick="copyVodafoneNumber()" class="link-btn vodafone-btn">
+                فودافون كاش <i class="fas fa-wallet"></i>
+            </button>
+
+            <!-- انستا باي -->
+            <a href="https://ipn.eg/S/samehstore87/instapay/6MXNqQ" target="_blank" class="link-btn instapay-btn">
+                الدفع عبر InstaPay <i class="fas fa-university"></i>
+            </a>
         </div>
     </div>
+
+    <!-- رسالة التنبيه المنسدلة عند النسخ -->
+    <div id="toast" class="toast">تم نسخ رقم فودافون كاش بنجاح!</div>
+
+    <script>
+        function copyVodafoneNumber() {
+            const phoneNumber = "01095913922";
+            
+            // نسخ الرقم للحافظة
+            navigator.clipboard.writeText(phoneNumber).then(function() {
+                // إظهار رسالة التنبيه
+                const toast = document.getElementById("toast");
+                toast.className = "toast show";
+                
+                // إخفاء الرسالة بعد ثانيتين
+                setTimeout(function(){ 
+                    toast.className = toast.className.replace("show", ""); 
+                }, 2000);
+            });
+        }
+    </script>
 
 </body>
 </html>
