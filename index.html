@@ -24,7 +24,7 @@
             padding: 20px;
         }
 
-        /* حاوية الصفحة الرئيسية (بطاقة بيضاء فاتحة) */
+        /* حاوية الصفحة الرئيسية */
         .container {
             background: #ffffff;
             border-radius: 20px;
@@ -79,7 +79,7 @@
             border-radius: 12px;
             font-size: 1.1rem;
             font-weight: 600;
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.3s ease;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
             cursor: pointer;
             border: none;
@@ -96,19 +96,54 @@
             font-size: 1.4rem;
         }
 
-        /* الألوان الظاهرة دائماً لكل زر */
+        /* الألوان الرئيسية للأزرار */
         .facebook-btn { background-color: #1877f2; }
         .tiktok-btn { background-color: #000000; }
         .maps-btn { background-color: #ea4335; }
         .phone-btn { background-color: #0284c7; }
         .whatsapp-btn { background-color: #25d366; }
-        .vodafone-btn { background-color: #e60000; }
-        .instapay-btn { background-color: #5b2c6f; }
+        
+        /* أزرار أقسام الدفع الرئيسية */
+        .payment-toggle-btn {
+            background-color: #0f172a;
+            color: #ffffff;
+        }
+        
+        .arrow-icon {
+            transition: transform 0.3s ease;
+        }
+
+        /* تغيير اتجاه السهم عند الفتح */
+        .payment-toggle-btn.active .arrow-icon {
+            transform: rotate(180deg);
+        }
+
+        /* القائمة المنسدلة الخفية */
+        .sub-buttons {
+            display: none;
+            flex-direction: column;
+            gap: 10px;
+            padding: 10px;
+            background-color: #f8fafc;
+            border-radius: 12px;
+            border: 1px solid #e2e8f0;
+            margin-top: -5px;
+        }
+
+        /* أزرار الدفع الفرعية */
+        .sub-btn {
+            padding: 12px 16px;
+            font-size: 0.95rem;
+            border-radius: 8px;
+        }
+        .vodafone-sub { background-color: #e60000; }
+        .etisalat-sub { background-color: #008000; }
+        .instapay-sub { background-color: #5b2c6f; }
 
         /* رسالة التنبيه عند النسخ */
         .toast {
             visibility: hidden;
-            min-width: 200px;
+            min-width: 220px;
             background-color: #333;
             color: #fff;
             text-align: center;
@@ -128,7 +163,6 @@
             visibility: visible;
             opacity: 1;
         }
-
     </style>
 </head>
 <body>
@@ -160,32 +194,73 @@
                 واتساب <i class="fab fa-whatsapp"></i>
             </a>
 
-            <!-- زر فودافون كاش مع خاصية النسخ -->
-            <button onclick="copyVodafoneNumber()" class="link-btn vodafone-btn">
-                فودافون كاش <i class="fas fa-wallet"></i>
-            </button>
+            <!-- قسم 1: الدفع للاكسسوارات -->
+            <div>
+                <button class="link-btn payment-toggle-btn" onclick="toggleDropdown('accessories-dropdown', this)">
+                    <span>الدفع للاكسسوارات <i class="fas fa-headphones" style="margin-right: 8px;"></i></span>
+                    <i class="fas fa-chevron-down arrow-icon"></i>
+                </button>
 
-            <!-- انستا باي -->
-            <a href="https://ipn.eg/S/samehstore87/instapay/6MXNqQ" target="_blank" class="link-btn instapay-btn">
-                الدفع عبر InstaPay <i class="fas fa-university"></i>
-            </a>
+                <div id="accessories-dropdown" class="sub-buttons">
+                    <!-- زر نسخ اتصالات كاش للاكسسوارات -->
+                    <button onclick="copyNumber('01121618190', 'تم نسخ رقم اتصالات كاش للاكسسوارات بنجاح!')" class="link-btn sub-btn etisalat-sub">
+                        اتصالات كاش <i class="fas fa-wallet"></i>
+                    </button>
+                    <!-- زر انستا باي للاكسسوارات -->
+                    <a href="https://ipn.eg/S/samehstore87/instapay/6MXNqQ" target="_blank" class="link-btn sub-btn instapay-sub">
+                        InstaPay <i class="fas fa-university"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- قسم 2: الدفع للصيانة -->
+            <div>
+                <button class="link-btn payment-toggle-btn" onclick="toggleDropdown('maintenance-dropdown', this)">
+                    <span>الدفع للصيانة <i class="fas fa-tools" style="margin-right: 8px;"></i></span>
+                    <i class="fas fa-chevron-down arrow-icon"></i>
+                </button>
+                
+                <div id="maintenance-dropdown" class="sub-buttons">
+                    <!-- زر نسخ فودافون كاش للصيانة -->
+                    <button onclick="copyNumber('01095913922', 'تم نسخ رقم فودافون كاش للصيانة بنجاح!')" class="link-btn sub-btn vodafone-sub">
+                        فودافون كاش <i class="fas fa-wallet"></i>
+                    </button>
+                    <!-- زر انستا باي للصيانة -->
+                    <a href="https://ipn.eg/S/sameh161087/instapay/56AlZi" target="_blank" class="link-btn sub-btn instapay-sub">
+                        InstaPay <i class="fas fa-university"></i>
+                    </a>
+                </div>
+            </div>
+
         </div>
     </div>
 
     <!-- رسالة التنبيه المنسدلة عند النسخ -->
-    <div id="toast" class="toast">تم نسخ رقم فودافون كاش بنجاح!</div>
+    <div id="toast" class="toast">تم النسخ بنجاح!</div>
 
     <script>
-        function copyVodafoneNumber() {
-            const phoneNumber = "01095913922";
+        // إظهار وإخفاء القوائم المنسدلة
+        function toggleDropdown(dropdownId, btn) {
+            const dropdown = document.getElementById(dropdownId);
+            const isVisible = dropdown.style.display === "flex";
             
-            // نسخ الرقم للحافظة
+            // إغلاق أي قائمة مفتوحة أخرى
+            document.querySelectorAll('.sub-buttons').forEach(el => el.style.display = 'none');
+            document.querySelectorAll('.payment-toggle-btn').forEach(el => el.classList.remove('active'));
+
+            if (!isVisible) {
+                dropdown.style.display = "flex";
+                btn.classList.add('active');
+            }
+        }
+
+        // دالة نسخ الرقم مع تخصيص الرسالة
+        function copyNumber(phoneNumber, message) {
             navigator.clipboard.writeText(phoneNumber).then(function() {
-                // إظهار رسالة التنبيه
                 const toast = document.getElementById("toast");
+                toast.innerText = message;
                 toast.className = "toast show";
                 
-                // إخفاء الرسالة بعد ثانيتين
                 setTimeout(function(){ 
                     toast.className = toast.className.replace("show", ""); 
                 }, 2000);
